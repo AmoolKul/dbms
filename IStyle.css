@@ -15,6 +15,7 @@ h2{
 }
 body{
     background-color: beige;
+    font-family: 'Fredoka One', cursive;
     
 
 }
@@ -49,5 +50,6 @@ img{
 .submit{
 margin-left: 3rem;
 margin-top: 1rem;
+
 
 }
