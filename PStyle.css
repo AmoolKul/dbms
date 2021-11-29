@@ -1,0 +1,7 @@
+.totalbill{
+    display: flex;
+}
+.idk{
+    display: flex;
+    flex-direction: column;
+}
