@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Total Bill </title>
+    <link rel="stylesheet" href="./PStyle.css">
+
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <h1> BILLING </h1>
+    <h2> One more step to check out! </h2>
+    <div class="wrapfull">
+        <div class="wrapbill">
+            <div class="totalbill">
+                <table style="width:100%">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Equipment ID</th>
+                        <th>Equipment Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>U121</td>
+                        <td>BB111 </td>
+                        <td> BASKETBALL GEAR </td>
+                        <td> 6 </td>
+                    </tr>
+                    <br><br>
+
+                </table>
+            </div>
+            <!-- <br> <br> <br> -->
+            <div class="totals">
+
+                <div >
+                    <table >
+                        <tr>
+                            <td scope="row"><strong>Total</strong></td>
+                            <td class="Price" >vschjascas<strong class="totalpricevalue"><i
+                                        class="fas fa-rupee-sign"> </i></strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1>Confirm Your Payment</h1>
+            <div class="first-row">
+                <div class="owner">
+                    <h3>Name on Card</h3>
+                    <div class="input-field">
+                        <!-- <label for="name">Name on Card:</label><br> -->
+                        <input type="text" id="name" name="name"><br>
+                    </div>
+                </div>
+                <div class="cvv">
+                    <h3>CVV</h3>
+                    <div class="input-field">
+                        <!-- <label for="cvv">cvv:</label><br> -->
+                        <input type="password" id="cvv" name="cvv"><br>
+                    </div>
+                </div>
+            </div>
+            <div class="second-row">
+                <div class="card-number">
+                    <h3>Card Number</h3>
+                    <div class="input-field">
+                        <!-- <label for="cardno">Card No:</label><br> -->
+                        <input type="text" id="cardno" name="cardno"><br>
+                    </div>
+                </div>
+            </div>
+            <div class="third-row">
+                <h3>Expiry Date</h3>
+                <div class="selection">
+                    <div class="date">
+                        <select name="months" id="months">
+                            <option value="Jan">Jan</option>
+                            <option value="Feb">Feb</option>
+                            <option value="Mar">Mar</option>
+                            <option value="Apr">Apr</option>
+                            <option value="May">May</option>
+                            <option value="Jun">Jun</option>
+                            <option value="Jul">Jul</option>
+                            <option value="Aug">Aug</option>
+                            <option value="Sep">Sep</option>
+                            <option value="Oct">Oct</option>
+                            <option value="Nov">Nov</option>
+                            <option value="Dec">Dec</option>
+                        </select>
+                        <select name="years" id="years">
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div>
+                    <!-- <div class="cards">
+                        <img src="mc.png" alt="">
+                        <img src="vi.png" alt="">
+                        <img src="pp.png" alt="">
+                    </div> -->
+                </div>
+            </div>
+            <a href="">Confirm</a>
+        </div>
+        </div>
+
+</html>

@@ -4,23 +4,23 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(224, 116, 66);
+    color: #7D0552;
 }
 h2{
     font-family: 'Fredoka One', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(224, 116, 66);
+    color: #7D0552;
 }
 body{
-    background-color: beige;
+    background-color: #EBDDE2;
     font-family: 'Fredoka One', cursive;
     
 
 }
 .main{
-    background-color: rgb(224, 116, 66);
+    background-color:#7D0552;
     width: 15%;
     height: 50%;
     display: flex;
