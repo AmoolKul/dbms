@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 h1{ 
-     font-family: 'Acme', sans-serif;
+    font-family: 'Acme', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #7D0552;
 }
 h2{
-     font-family: 'Acme', sans-serif;
+    font-family: 'Acme', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ h2{
 }
 body{
     background-color: #EBDDE2;
-     font-family: 'Acme', sans-serif;
+    font-family: 'Acme', sans-serif;
     
 
 }
@@ -50,6 +50,7 @@ img{
 .submit{
 margin-left: 3rem;
 margin-top: 1rem;
+font-family: 'Acme', sans-serif;
 
 
 }
