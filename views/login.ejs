@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> LOGIN PAGE </title>
+    <link rel="stylesheet" href="/css/Lstyles.css">
+</head>
+
+<body>
+ 
+    <div class="center">
+        <h2> LOGIN </h2>
+        <form class="user_form">
+            <div class="email">
+                <input class="user_email" type="email" required placeholder="Enter Email ID">
+                <label> Email ID </label>
+            </div>
+            <div class="password">
+                <input class="user_password" type="password" required placeholder="Enter Password">
+                <label> Password </label>
+            </div>
+            <p class="password-error"></p>
+
+            <div class="submit">
+                <input type="submit" value="Submit">
+            </div>
+            <br>
+            <div class="signup">
+                Not a member ? <a href="/signup"> SIGNUP </a>
+            </div>
+        </form>
+    </div>
+
+
+
+    <script>
+
+
+
+        const user_email = document.querySelector(".user_email")
+        const user_form = document.querySelector(".user_form")
+        const user_password = document.querySelector(".user_password")
+        const password_error = document.querySelector(".password-error")
+
+
+
+        console.log(password_error)
+
+
+
+
+        user_form.addEventListener('submit', (e) => {
+
+
+
+            e.preventDefault();
+
+            password_error.innerHTML = "";
+
+
+            let data = {
+                email: user_email.value,
+                password: user_password.value
+            }
+
+
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then((data) => {
+                    return data.json()
+                })
+                .then((data) => {
+                    console.log(data)
+
+                    if (data.loginstatus) {
+                        window.location.href = "/"
+                    }
+                    else {
+                        password_error.innerHTML = data.message
+
+                    }
+                })
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
