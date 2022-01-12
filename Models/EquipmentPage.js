@@ -27,7 +27,8 @@ const User = connection.define('EquipmentPage', {
 
 }, {
     hasTrigger: true
-});
+}
+);
 
 
 console.log(User);

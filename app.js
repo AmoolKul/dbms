@@ -12,6 +12,7 @@ const EquipmentPage = require("./Models/EquipmentPage")
 const JWT_SECRET = process.env.SECRET_KEY;
 const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
+const jwt_decode = require('jwt-decode');
 
 
 
@@ -21,6 +22,8 @@ const app = express();
 const PORT = 5000;
 
 
+
+let currentequipemt = {}
 
 
 
@@ -98,21 +101,9 @@ connection.authenticate()
                     equipments();
 
                 }, 5000)
-
-
-
-
             } catch (error) {
 
             }
-
-
-
-
-
-
-
-
         });
     })
     .catch(() => {
@@ -145,6 +136,13 @@ app.get("/login", (req, res) => {
     res.render('login');
 })
 
+
+app.get("/issue", (req, res) => {
+    if (req.cookies.jwt) {
+        return res.render("Issue")
+    }
+    res.render('login');
+})
 
 app.get('/logout', (req, res) => {
     res.clearCookie("jwt");
@@ -193,6 +191,49 @@ app.get("/", (req, res) => {
 
 
 //post routes
+
+
+app.post("/issueequipment", (req, res) => {
+
+
+    if(req.body == null){
+        return res.redirect("/");
+    }
+
+
+
+    const user = jwt.verify(req.cookies.jwt, `${JWT_SECRET}`);
+    console.log("rhgurhguh", user);
+
+    console.log(req.body)
+
+    EquipmentPage.findOne({ where: { equipment_no: req.body.id } })
+        .then((equipment) => {
+
+            console.log(equipment.dataValues)
+            let { equipment_no, equipment_name, equipment_availabe, equipment_img, price } = equipment.dataValues
+
+
+
+
+            currentequipemt =  {
+                name: equipment_name,
+                eq_id: equipment_no,
+                user_id: user.id,
+                available: equipment_availabe,
+                image: equipment_img,
+                price : price
+            }
+
+            res.send({
+                status : 1,
+                message : "item saved"
+            })
+        })
+
+
+
+})
 
 app.post("/signup", (req, res) => {
     const { email, password } = req.body
