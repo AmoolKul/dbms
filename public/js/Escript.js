@@ -144,7 +144,7 @@ fetch("/getequipment")
       let tr = document.createElement('tr');
 
       tr.innerHTML = `
-    <td> 1 </td>
+    <td> ${index + 1} </td>
                 <td> <div id="${index + 1}" class="tennispop equipment" > ${equipments.equipment_name}
                         <span class="popuptext1" id="myPopup${index + 1}">  </span>
                      </div>

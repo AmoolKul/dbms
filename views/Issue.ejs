@@ -7,63 +7,104 @@
 </head>
 
 <body>
+
+
     <div class="topnav">
         <a class="active" href="/">Home</a>
         <a href="#news">My Profile </a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <a href= "/Return"> Return</a>
+        <a href="/AboutUs">About</a>
         <a href="/logout">Logout</a>
     </div>
     <header>
         <h1> HEY THERE BUDDY!</h1>
         <h2>Have a great game!</h2>
-        <div class="mainwrap">
+        <%= console.log(equipment) %>
+            <div class="mainwrap">
 
 
-            <div class="main">
-                <ul>
-                    <form>
-                        <img src="/Images/Sports1.jpg" alt="All sports"><br><br>
-                        <label for="userid">User ID:</label><br>
-                        <input type="text" id="userid" name="userid" disabled><br>
+                <div class="main">
+                    <ul>
+                        <form method="post" action="/Payment">
+                            <img src="<%= equipment.image %>" alt="All sports"><br><br>
+                            <label for="userid">User ID:</label><br>
+                            <input value="<%= equipment.user_id %>" type="text" id="userid" name="userid"
+                                class="disable"><br>
 
-                        <label for="eqid">Equipment ID:</label><br>
-                        <input type="text" id="eqid" name="eqid" disabled><br>
+                            <label for="eqid">Equipment ID:</label><br>
+                            <input value="<%= equipment.eq_id %>" type="text" id="eqid" name="eqid" class="disable"><br>
 
-                        <label for="eqname"> Equipment Name :</label>
-                        <input type="text" id="eqname" name="eqname" disabled><br>
+                            <label for="eqname"> Equipment Name :</label>
+                            <input value="<%= equipment.name %>" type="text" id="eqname" name="eqname"
+                                class="disable"><br>
 
-                        <label for="doi">Date of Issue:</label><br>
-                        <input type="date" id="doi" name="doi"><br>
+                            <label for="doi">Date of Issue:</label><br>
+                            <input class="date" onchange="handler(event)" type="date" id="doi" name="doi" required><br>
 
-                        <label for="dor">Date of Return:</label><br>
-                        <input type="date" id="doi" name="doi" disabled><br>
+                            <label for="dor">Date of Return:</label><br>
+                            <input class="returndate" type="date" id="doi" name="doi" disabled><br>
 
-                        <label for="no_of_eq">No of Equipments:</label><br>
-                        <select name="no_of_eq" id="no_of_eq">
-                            <option value="op1">1</option>
-                            <option value="op2">2</option>
-                            <option value="op3">3</option>
-                            <option value="op4">4</option>
-                            <option value="op5">5</option>
-                            <option value="op6">6</option>
-                            <option value="op7">7</option>
-                            <option value="op8">8</option>
-                            <option value="op9">9</option>
-                            <option value="op10">10</option>
-                            <option value="op11">11</option>
 
-                        </select>
-                        <br><br> <br>
-                        <div class="submit">
-                            <input type="submit" value="Submit">
-                        </div>
-                    </form>
-                </ul>
+                            <div class="hide">
+                                <label for="dor">Date of Return:</label><br>
+                                <input class="returndate2" type="date" id="doi" name="dor" class="disable"><br>
+                            </div>
 
+
+                            <label for="no_of_eq">No of Equipments:</label><br>
+                            <select class = "noeq" onchange="val()" name="no_of_eq" id="no_of_eq">
+                                <% for( let index=0; index < equipment.available; index++ ) { %>
+                                    <option value="<%=index+1%>">
+                                        <%=index+1%>
+                                    </option>
+                                    <% } %>
+
+
+                            </select>
+
+                            <br> <label for="price"> Price: </label><br>
+                            <input  value="<%= equipment.price %>" type="text" id="price" name="price"
+                                class="disable price" ><br>
+
+
+
+                            <br><br> <br>
+                            <div class="submit">
+                                <input type="submit" value="Submit">
+                            </div>
+                        </form>
+                    </ul>
+
+                </div>
             </div>
-        </div>
     </header>
+
+    <script>
+        let initial = document.querySelector(".price").value;
+        var today = new Date().toISOString().split('T')[0];
+        document.querySelector(".date").setAttribute('min', today);
+
+        function handler(e) {
+            console.log(e.target.value);
+            var getdate = e.target.value.split("-")
+            console.log(getdate);
+            var setdate = new Date(Number(getdate[0]), Number(getdate[1]), Number(getdate[2]));
+            var newdate = new Date(setdate.setMonth(setdate.getMonth() + 0)).toLocaleDateString("fr-CA");
+
+            document.querySelector(".returndate").value = newdate;
+            document.querySelector(".returndate2").value = newdate;
+            console.log(newdate);
+
+        }
+        function val() {
+            
+           let d = document.querySelector(".noeq").value;
+           
+           let e = document.querySelector(".price").value = d*initial;
+         
+        }
+
+    </script>
 </body>
 
 </html>

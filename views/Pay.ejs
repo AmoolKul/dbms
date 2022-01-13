@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Total Bill </title>
+    <link rel="stylesheet" href="/css/PStyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="#news">My Profile </a>
+        <a href="/Return"> Return</a>
+        <a href="/AboutUs">About</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <h1> BILLING </h1>
+    <h2> One more step to check out! </h2>
+    <div class="wrapfull">
+        <div class="wrapbill">
+            <div class="totalbill">
+                <table style="width:100%">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Equipment ID</th>
+                        <th>Equipment Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%= userid %>
+                        </td>
+                        <td>
+                            <%= equipmentId %>
+                        </td>
+                        <td>
+                            <%= equipmentName %>
+                        </td>
+                        <td>
+                            <%= number_of_eq %>
+                        </td>
+                    </tr>
+                    <br><br>
+
+                </table>
+            </div>
+            <!-- <br> <br> <br> -->
+            <div class="totals">
+
+                <div>
+                    <table>
+                        <tr>
+                            <td scope="row"><strong>Total</strong></td>
+                            <td class="Price">
+                                <%= price %><strong class="totalpricevalue"><i class="fas fa-rupee-sign">
+                                        </i></strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <form class="card" action="/payment_details" method="post">
+                <h1>Confirm Your Payment</h1>
+                <div class="first-row">
+                    <div class="owner">
+                        <h3>Name on Card</h3>
+                        <div class="input-field">
+                            <!-- <label for="name">Name on Card:</label><br> -->
+                            <input type="text" id="name" name="name" required><br>
+                        </div>
+                    </div>
+                    <div class="cvv">
+                        <h3>CVV</h3>
+                        <div class="input-field">
+                            <!-- <label for="cvv">cvv:</label><br> -->
+                            <input type="password" id="cvv" required><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="second-row">
+                    <div class="card-number">
+                        <h3>Card Number</h3>
+                        <div class="input-field">
+                            <!-- <label for="cardno">Card No:</label><br> -->
+                            <input type="text" id="cardno" name="cardno" required><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="third-row">
+                    <h3>Expiry Date</h3>
+                    <div class="selection">
+                        <div class="date">
+                            <select name="months" id="months" required>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+                            <select name="years" id="years">
+                                <option value="2020">2023</option>
+                                <option value="2019">2024</option>
+                                <option value="2018">2025</option>
+                                <option value="2017">2026</option>
+                                <option value="2016">2027</option>
+                                <option value="2015">2028</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <button>Confirm</button>
+        </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        var notyf = new Notyf();
+
+        let userform = document.querySelector(".card")
+        userform.addEventListener('submit', (e) => {
+            e.preventDefault();
+            notyf.success('Payment successful');
+            setTimeout(function(){  window.location.href = `/`; }, 2500);
+        })
+
+    </script>
+
+</html>

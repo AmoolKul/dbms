@@ -7,6 +7,8 @@ const path = require("path")
 const SignUpPage = require("./Models/SignUpPage")
 const IssuePage = require("./Models/IssuePage")
 const ReturnPage = require("./Models/ReturnPage")
+const BillPage = require("./Models/BillPage")
+
 const PayPage = require("./Models/PayPage")
 const EquipmentPage = require("./Models/EquipmentPage")
 const JWT_SECRET = process.env.SECRET_KEY;
@@ -23,7 +25,7 @@ const PORT = 5000;
 
 
 
-let currentequipemt = {}
+let currentequipment = {}
 
 
 
@@ -139,7 +141,21 @@ app.get("/login", (req, res) => {
 
 app.get("/issue", (req, res) => {
     if (req.cookies.jwt) {
-        return res.render("Issue")
+        return res.render("Issue", { equipment: currentequipment })
+    }
+    res.redirect('/login');
+})
+
+app.get("/return", (req, res) => {
+    if (req.cookies.jwt) {
+        return res.render("Return", { equipment: currentequipment })
+    }
+    res.redirect('/login');
+})
+
+app.get("/aboutus", (req, res) => {
+    if (req.cookies.jwt) {
+        return res.render("AboutUs")
     }
     res.render('login');
 })
@@ -160,7 +176,7 @@ app.get("/getequipment", (req, res) => {
             })
 
             console.log(equipemnts_array);
-
+            currentequipemt = equipemnts_array;
             return res.send(equipemnts_array)
         })
 
@@ -188,15 +204,62 @@ app.get("/", (req, res) => {
     return res.render('equipment');
 })
 
+app.get("/paypage", (req, res) => {
+
+    const user = jwt.verify(req.cookies.jwt, `${JWT_SECRET}`);
+    console.log("rhgurhguh", user);
+
+    IssuePage.findOne(
+        {
+            where:
+            {
+                userid: user.id
+            }
+            ,
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        }
+    )
+        .then((usereq) => {
+            let { userid, equipmentId, equipmentName, number_of_eq, price } = usereq.dataValues
+
+
+            return res.render("Pay", { userid, equipmentId, equipmentName, number_of_eq, price })
+
+
+
+        })
+
+})
+
 
 
 //post routes
 
 
+
+app.post("/payment_details", (req, res) => {
+
+    console.log(req.body);
+    BillPage.create({
+        name: `${req.body.name}`,
+        cardno: `${req.body.cardno}`
+    })
+
+        .then(() => {
+            // res.send("success")
+        })
+
+
+
+
+})
+
 app.post("/issueequipment", (req, res) => {
 
 
-    if(req.body == null){
+    if (req.body == null) {
         return res.redirect("/");
     }
 
@@ -216,18 +279,18 @@ app.post("/issueequipment", (req, res) => {
 
 
 
-            currentequipemt =  {
+            currentequipment = {
                 name: equipment_name,
                 eq_id: equipment_no,
                 user_id: user.id,
                 available: equipment_availabe,
                 image: equipment_img,
-                price : price
+                price: price
             }
 
             res.send({
-                status : 1,
-                message : "item saved"
+                status: 1,
+                message: "item saved"
             })
         })
 
@@ -320,6 +383,26 @@ app.post("/login", (req, res) => {
 
 
 
+})
+
+
+app.post("/Payment", (req, res) => {
+
+    console.log("hadvhja", req.body);
+    IssuePage.create({
+        userid: `${req.body.userid}`,
+        equipmentId: `${req.body.eqid}`,
+        equipmentName: `${req.body.eqname}`,
+        date_of_issue: `${req.body.doi}`,
+        date_of_return: `${req.body.dor}`,
+        number_of_eq: `${req.body.no_of_eq}`,
+        price: `${req.body.price}`
+
+    })
+        .then(() => {
+            console.log("new user created");
+            res.redirect('/paypage');
+        })
 })
 
 

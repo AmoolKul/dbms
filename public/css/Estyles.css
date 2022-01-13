@@ -1,13 +1,18 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 .heading{
     text-align: center;
+    font-family: 'Acme', sans-serif;
 }
 
 .heading p{
     color: grey;
+    font-family: 'Acme', sans-serif;
 }
 body{
     align-items: center;
     background-color: #EBDDE2;
+    font-family: 'Acme', sans-serif;
 }
 table{
     width: 1300px;
@@ -20,6 +25,7 @@ table{
     margin-right: auto;
     background-color: #7D0552;
     color: white;
+    font-family: 'Acme', sans-serif;
 }
 table, th{
     padding: 20px;
@@ -43,6 +49,7 @@ table, img{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
   }
   
   /* The actual popup */

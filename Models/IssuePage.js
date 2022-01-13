@@ -5,14 +5,11 @@ const { DataTypes } = require('sequelize');
 const User = connection.define('IssuePages', {
     userid: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
     },
     equipmentId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
     },
-    equipementName: {
+    equipmentName: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -27,6 +24,11 @@ const User = connection.define('IssuePages', {
     number_of_eq: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    price: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+
     }
 },{
     hasTrigger: true

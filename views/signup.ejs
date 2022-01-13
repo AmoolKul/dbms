@@ -7,30 +7,31 @@
 </head>
 
 <body>
-    
 
-    <div class="center">
-        <h2> SIGNUP </h2>
-        <p> Enter credentials for signup </p>
-        <form class="user_form">
-            <div class="email">
-                <input class="user_email" type="email" required placeholder="Enter new Email ID">
-                <label> Email ID </label>
-            </div>
-            <div class="password">
-                <input class="user_password" type="password" required placeholder="Enter Password">
-                <label> Password </label>
-            </div>
+    <div class="wrap">
+        <div class="center">
+            <h2> SIGNUP </h2>
+            <p> Enter credentials for signup </p>
+            <form class="user_form">
+                <div class="email">
+                    <input class="user_email" type="email" required placeholder="Enter new Email ID">
+                    <label> Email ID </label>
+                </div>
+                <div class="password">
+                    <input class="user_password" type="password" required placeholder="Enter Password">
+                    <label> Password </label>
+                </div>
 
-            <p class="password-error"></p>
-            <div class="submit">
-                <input class="submit_user" type="submit" value="Register">
-            </div>
+                <p class="password-error"></p>
+                <div class="submit">
+                    <input class="submit_user" type="submit" value="Register">
+                </div>
 
-            <div class="login">
-                Already have an account? <a href="/login"> LOGIN </a>
-            </div>
-        </form>
+                <div class="login">
+                    Already have an account? <a href="/login"> LOGIN </a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
@@ -78,20 +79,20 @@
             },
             body: JSON.stringify(data)
         })
-        .then((data)=>{
-            return data.json()
-        })
-        .then((data)=>{
-            console.log(data)
+            .then((data) => {
+                return data.json()
+            })
+            .then((data) => {
+                console.log(data)
 
-            if(data.loginstatus){
-                window.location.href = "/login"
-            }
-            else{
-                password_error.innerHTML = data.message
+                if (data.loginstatus) {
+                    window.location.href = "/login"
+                }
+                else {
+                    password_error.innerHTML = data.message
 
-            }
-        })
+                }
+            })
 
 
 
