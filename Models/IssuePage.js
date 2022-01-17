@@ -29,6 +29,11 @@ const User = connection.define('IssuePages', {
         type: DataTypes.INTEGER,
         allowNull: false
 
+    },
+    returned: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 },{
     hasTrigger: true

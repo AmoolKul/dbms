@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> MY Profile </title>
+    <link rel="stylesheet" href="../public/css/MyProfile.css">
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/MyProfile">My Profile </a>
+        <a href="/Return"> Return</a>
+        <a href="/AboutUs">About</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <h1> Welcome to your profile! </h1>
+    <h2> Here are your previous </h2>
+    <div class="wrapfull">
+        <div class="wrapbill">
+            <div class="totalbill">
+                <table style="width:100%">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Equipment ID</th>
+                        <th>Equipment Name</th>
+                        <th>Date Of Return</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%= userid %>
+                        </td>
+                        <td>
+                            <%= equipmentId %>
+                        </td>
+                        <td>
+                            <%= equipmentName %>
+                        </td>
+                        <td>
+                            <%= dor %>
+                        </td>
+                        <td>
+                            <%= number_of_eq %>
+                        </td>
+                    </tr>
+                    <br><br>
+
+                </table>
+            </div>
+
+</html>

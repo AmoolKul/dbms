@@ -149,7 +149,7 @@ fetch("/getequipment")
                         <span class="popuptext1" id="myPopup${index + 1}">  </span>
                      </div>
                 </td>
-                <td> ${equipments.equipment_availabe} </td>
+                <td> ${equipments.equipment_available} </td>
                 <td> <img src="${equipments.equipment_img}" alt="Tennis"></td>
                 <td> ${equipments.price}$ per month </td>
     

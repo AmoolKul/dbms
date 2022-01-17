@@ -12,7 +12,7 @@ const User = connection.define('EquipmentPage', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    equipment_availabe : {
+    equipment_available : {
         type: DataTypes.INTEGER,
         allowNull: false
     },

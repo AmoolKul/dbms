@@ -12,14 +12,14 @@ const User = connection.define('ReturnPage', {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    equipementName: {
+    equipmentName: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    date_of_issue: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+    // date_of_issue: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
     date_of_return: {
         type: DataTypes.STRING,
         allowNull: false

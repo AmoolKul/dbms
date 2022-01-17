@@ -4,13 +4,11 @@ require('dotenv').config()
 const express = require("express");
 const connection = require("./DBConnection/connection")
 const path = require("path")
-const SignUpPage = require("./Models/SignUpPage")
-const IssuePage = require("./Models/IssuePage")
-const ReturnPage = require("./Models/ReturnPage")
-const BillPage = require("./Models/BillPage")
 
-const PayPage = require("./Models/PayPage")
-const EquipmentPage = require("./Models/EquipmentPage")
+
+
+
+
 const JWT_SECRET = process.env.SECRET_KEY;
 const jwt = require("jsonwebtoken");
 const cookieparser = require("cookie-parser");
@@ -27,6 +25,35 @@ const PORT = 5000;
 
 let currentequipment = {}
 
+
+
+
+const SignUpPage = require("./Models/SignUpPage")
+const IssuePage = require("./Models/IssuePage")
+const ReturnPage = require("./Models/ReturnPage")
+const BillPage = require("./Models/BillPage")
+const PayPage = require("./Models/PayPage")
+const EquipmentPage = require("./Models/EquipmentPage")
+
+
+SignUpPage.hasMany(IssuePage, { foreignKey: 'userid' }); // creating foreign key
+IssuePage.belongsTo(SignUpPage, { foreignKey: 'userid' });
+
+EquipmentPage.hasMany(IssuePage, { foreignKey: 'equipment_no' }); // creating foreign key
+IssuePage.belongsTo(EquipmentPage, { foreignKey: 'equipmentId' });
+
+
+SignUpPage.hasMany(ReturnPage, { foreignKey: 'userid' }); // creating foreign key
+ReturnPage.belongsTo(SignUpPage, { foreignKey: 'userid' });
+
+EquipmentPage.hasMany(ReturnPage, { foreignKey: 'equipment_no' }); // creating foreign key
+ReturnPage.belongsTo(EquipmentPage, { foreignKey: 'equipmentId' });
+
+SignUpPage.hasMany(PayPage, { foreignKey: 'userid' }); // creating foreign key
+PayPage.belongsTo(SignUpPage, { foreignKey: 'userid' });
+
+EquipmentPage.hasMany(PayPage, { foreignKey: 'equipment_no' }); // creating foreign key
+PayPage.belongsTo(EquipmentPage, { foreignKey: 'equipmentId' });
 
 
 
@@ -55,52 +82,74 @@ connection.authenticate()
                         const data = await EquipmentPage.bulkCreate([
                             {
                                 equipment_name: "Tennis",
-                                equipment_availabe: 15,
+                                equipment_available: 15,
                                 equipment_img: "https://www.sportsmomsurvivalguide.com/wp-content/uploads/2018/06/Wilson-Tennis-Racket-1.jpg",
                                 price: 200
                             },
                             {
                                 equipment_name: "Baseball",
-                                equipment_availabe: 30,
+                                equipment_available: 30,
                                 equipment_img: "https://bloximages.newyork1.vip.townnews.com/dothaneagle.com/content/tncms/assets/v3/editorial/0/b2/0b28042e-6dae-11eb-97c2-8f164877b14e/60274ba4c866b.image.jpg?resize=1200%2C800",
                                 price: 350
                             },
                             {
                                 equipment_name: "Archery",
-                                equipment_availabe: 25,
+                                equipment_available: 25,
                                 equipment_img: "https://m.media-amazon.com/images/I/71Q-IbUOQlL._AC_SL1500_.jpg",
                                 price: 500
                             },
                             {
                                 equipment_name: "Cricket",
-                                equipment_availabe: 40,
+                                equipment_available: 40,
                                 equipment_img: "https://5.imimg.com/data5/SELLER/Default/2021/2/QT/JD/AW/119792758/rk-nimbus-cricket-kit-men-size-500x500.png",
                                 price: 350
                             },
                             {
                                 equipment_name: "Hockey",
-                                equipment_availabe: 40,
+                                equipment_available: 40,
                                 equipment_img: "https://m.media-amazon.com/images/I/71Q-IbUOQlL._AC_SL1500_.jpg",
                                 price: 300
                             },
                             {
                                 equipment_name: "Badminton",
-                                equipment_availabe: 50,
+                                equipment_available: 50,
                                 equipment_img: "https://m.media-amazon.com/images/I/81-4rp3jnxL._SL1500_.jpg",
                                 price: 150
                             },
                             {
                                 equipment_name: "Golf",
-                                equipment_availabe: 10,
+                                equipment_available: 10,
                                 equipment_img: "https://i.insider.com/5f21b84524381734ea40df21?width=1136&format=jpeg",
                                 price: 700
                             },
 
                         ]);
+
+
+
+
+
+
                     }
 
 
                     equipments();
+
+
+                    const trigger = async () => {
+                        const trigger_decrement = await connection.query('CREATE TRIGGER decrement AFTER INSERT ON issuepages' +
+                            ' FOR EACH ROW' +
+                            ' BEGIN' +
+                            '  UPDATE equipmentpages SET equipment_available = equipment_available - NEW.number_of_eq WHERE equipment_no = NEW.equipmentId;' +
+                            'END;')
+
+                        const trigger_increment = await connection.query('CREATE TRIGGER increment AFTER INSERT ON returnpages' +
+                            ' FOR EACH ROW' +
+                            ' BEGIN' +
+                            '  UPDATE equipmentpages SET equipment_available = equipment_available + NEW.number_of_eq WHERE equipment_no = NEW.equipmentId;' +
+                            'END;')
+                    }
+                    trigger();
 
                 }, 5000)
             } catch (error) {
@@ -139,6 +188,41 @@ app.get("/login", (req, res) => {
 })
 
 
+app.get("/getpastdata", (req, res) => {
+
+
+    ReturnPage.findAll()
+        .then((data) => {
+
+            let past_data = []
+
+            data.map((obj) => {
+
+                past_data.push(obj.dataValues)
+
+            })
+
+            console.log(past_data)
+            return res.send(past_data);
+
+
+        })
+})
+
+
+app.get("/myprofile", (req, res) => {
+
+
+
+    if (req.cookies.jwt) {
+        return res.render("MyProfile");
+    }
+    else {
+        res.render('login');
+    }
+})
+
+
 app.get("/issue", (req, res) => {
     if (req.cookies.jwt) {
         return res.render("Issue", { equipment: currentequipment })
@@ -147,10 +231,66 @@ app.get("/issue", (req, res) => {
 })
 
 app.get("/return", (req, res) => {
+    console.log(req.cookies.jwt);
     if (req.cookies.jwt) {
-        return res.render("Return", { equipment: currentequipment })
+
+
+        const user = jwt.verify(req.cookies.jwt, `${JWT_SECRET}`);
+        console.log("rhgurhguh", user);
+        IssuePage.findOne(
+            {
+                where:
+                {
+                    userid: user.id,
+                    returned: false
+                }
+
+                // order: [
+                //     ['createdAt', 'DESC']
+                // ]
+            }
+        )
+            .then((usereq) => {
+
+
+
+                if (usereq != null) {
+
+
+
+
+
+                    console.log(usereq)
+                    let { userid, equipmentId, equipmentName, number_of_eq, price, date_of_return, date_of_issue } = usereq.dataValues
+
+                    let return_equipment = {
+                        name: equipmentName,
+                        eq_id: equipmentId,
+                        user_id: userid,
+                        available: number_of_eq,
+                        price: price,
+                        doi: date_of_issue,
+                        dor: date_of_return
+                    }
+
+
+
+                    return res.render("Return", { equipment: return_equipment })
+
+                }
+                else {
+
+                    res.redirect("/")
+                }
+            })
+
     }
-    res.redirect('/login');
+    else {
+
+
+
+        res.redirect('/login');
+    }
 })
 
 app.get("/aboutus", (req, res) => {
@@ -185,6 +325,10 @@ app.get("/getequipment", (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.render('signup');
+})
+
+app.get("/myprofile", (req, res) => {
+    res.render('MyProfile');
 })
 
 
@@ -274,7 +418,7 @@ app.post("/issueequipment", (req, res) => {
         .then((equipment) => {
 
             console.log(equipment.dataValues)
-            let { equipment_no, equipment_name, equipment_availabe, equipment_img, price } = equipment.dataValues
+            let { equipment_no, equipment_name, equipment_available, equipment_img, price } = equipment.dataValues
 
 
 
@@ -283,7 +427,7 @@ app.post("/issueequipment", (req, res) => {
                 name: equipment_name,
                 eq_id: equipment_no,
                 user_id: user.id,
-                available: equipment_availabe,
+                available: equipment_available,
                 image: equipment_img,
                 price: price
             }
@@ -294,6 +438,32 @@ app.post("/issueequipment", (req, res) => {
             })
         })
 
+
+
+})
+
+app.post("/returnequipment", (req, res) => {
+    console.log("fheik", req.body);
+
+
+    IssuePage.update({ returned: true }, {
+        where: {
+            equipmentId: (req.body.eqid),
+            userid: (req.body.userid),
+            returned: false
+        }
+    }).then(() => {
+        ReturnPage.create({
+            userid: `${req.body.userid}`,
+            equipmentId: `${req.body.eqid}`,
+            equipmentName: `${req.body.eqname}`,
+            date_of_return: `${req.body.dor}`,
+            number_of_eq: `${req.body.no_of_eq}`,
+
+
+        })
+        res.redirect("/")
+    })
 
 
 })
@@ -404,6 +574,8 @@ app.post("/Payment", (req, res) => {
             res.redirect('/paypage');
         })
 })
+
+
 
 
 
