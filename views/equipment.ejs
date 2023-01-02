@@ -2,22 +2,65 @@
 <html>
     <head>
         <title> EQUIPMENT PAGE</title>
-        <link rel="stylesheet" href="/css/Estyles.css">
+        <link rel="stylesheet" href="/css/newStyles.css">
     </head>
     <body>
         <div class="topnav">
             <a class="active" href="/"> Home </a>
             <a href="/MyProfile"> My Profile </a>
-            <a href= "/Return"> Return</a>
             <a href="/AboutUs"> About</a>
             <a href="/logout"> Logout </a>
         </div>
         
-        <div class="heading">
-            <h1> EQUIPMENT </h1>
-            <p> (click on each sport to see more details about renting) </p>
+        <div>
+            <div class="wrapper">
+                <img src="https://4.imimg.com/data4/FU/WB/MY-36510190/tennis-racket-500x500.jpg" alt="">
+                <div class="details">
+                    <li style="font-size: 50px;">Tennis</li>
+                    <li style="margin-top: 10px; font-size: 20px;">Available: 5</li>
+                    <li style="font-size: 20px;">₹500/pc</li>
+                    <li class="buy">Buy Now</li>
+                </div>
+            </div>
+            <div class="wrapper">
+                <img src="http://alistar.ae/wp-content/uploads/2021/12/MRF-Basic-Kit.jpg" alt="">
+                <div class="details">
+                    <li style="font-size: 50px;">Cricket Kit</li>
+                    <li style="margin-top: 10px; font-size: 20px;">Available: 10</li>
+                    <li style="font-size: 20px;">₹1000/pc</li>
+                    <li class="buy">Buy Now</li>
+                </div>
+            </div>
+            <div class="wrapper">
+                <img src="https://media.istockphoto.com/id/1178074437/photo/3d-rendering-of-a-basketball-in-the-net-on-a-dark-background.jpg?s=612x612&w=0&k=20&c=wVod1DvQ5pihsHAdLefCjxbfRdejOySNl4czUaqSndw=" alt="">
+                <div class="details">
+                    <li style="font-size: 50px;">BasketBall</li>
+                    <li style="margin-top: 10px; font-size: 20px;">Available: 3</li>
+                    <li style="font-size: 20px;">₹200/pc</li>
+                    <li class="buy">Buy Now</li>
+                </div>
+            </div>
+            <div class="wrapper">
+                <img src="https://cdn.britannica.com/53/212553-050-E4A98496/Baseball-bat.jpg" alt="">
+                <div class="details">
+                    <li style="font-size: 50px;">Baseball Kit</li>
+                    <li style="margin-top: 10px; font-size: 20px;">Available: 8</li>
+                    <li style="font-size: 20px;">₹600/pc</li>
+                    <li class="buy">Buy Now</li>
+                </div>
+            </div>
+            <div class="wrapper">
+                <img src="https://i.ebayimg.com/images/g/6kYAAOSw8FtZhCZo/s-l500.jpg" alt="">
+                <div class="details">
+                    <li style="font-size: 50px;">Hockey Kit</li>
+                    <li style="margin-top: 10px; font-size: 20px;">Available: 2</li>
+                    <li style="font-size: 20px;">₹850/pc</li>
+                    <li class="buy">Buy Now</li>
+                </div>
+            </div>
+
         </div>
-        <table class="equipment_table">
+        <!-- <table class="equipment_table">
             <tr>
                  <th> Equipment ID No </th>
                  <th> Equipment Name </th>
@@ -25,80 +68,11 @@
                  <th> Equipment Image </th>
                  <th> Price </th>
             </tr>
-            <!-- <tr>
-                <td> 1 </td>
-                <td> <div class="tennispop" onclick="myFunction1()"> Tennis
-                        <span class="popuptext1" id="myPopup1"> The rental set consists of 2 high quality Tennis racquets and 3 Tennis balls <br> <br><a href=""> Rent now </a></span>
-                     </div>
-                </td>
-                <td> 15 </td>
-                <td> <img src="https://www.sportsmomsurvivalguide.com/wp-content/uploads/2018/06/Wilson-Tennis-Racket-1.jpg" alt="Tennis"></td>
-                <td> 200$ per month </td>
-            </tr>
-            <tr>
-                <td> 2 </td>
-                <td> <div class="baseballpop" onclick="myFunction2()"> Baseball
-                         <span class="popuptext2" id="myPopup2"> The rental set consists of one Baseball Bat ,a pair of batting & catching gloves and cleats<br> <br><a href=""> Rent now </a> </span>
-                     </div>
-                </td>
-                <td> 30 </td>
-                <td> <img src="https://bloximages.newyork1.vip.townnews.com/dothaneagle.com/content/tncms/assets/v3/editorial/0/b2/0b28042e-6dae-11eb-97c2-8f164877b14e/60274ba4c866b.image.jpg?resize=1200%2C800" alt="Baseball"></td>
-                <td> 350$ per month </td>
-            </tr>
-            <tr>
-                <td> 3 </td>
-                <td> <div class="archerypop" onclick="myFunction3()"> Archery
-                         <span class="popuptext3" id="myPopup3"> The rental set consists of one Olympic level Bow, 10 arrows, protective gear for one and one target <br> <br><a href=""> Rent now </a> </span>
-                     </div></td>
-                <td> 25 </td>
-                <td> <img src="https://m.media-amazon.com/images/I/71Q-IbUOQlL._AC_SL1500_.jpg" alt="Archery"></td>
-                <td> 500$ per month </td>
-            </tr>
-            <tr>
-                <td> 4 </td>
-                <td> <div class="cricketpop" onclick="myFunction4()"> Cricket
-                        <span class="popuptext4" id="myPopup4"> The rental set consists of one helmet, a pair of gloves, chest guard, batting pads and 2 leather balls <br> <br><a href=""> Rent now </a> </span>
-                     </div>
-                </td>
-                <td> 40 </td>
-                <td> <img src="https://5.imimg.com/data5/SELLER/Default/2021/2/QT/JD/AW/119792758/rk-nimbus-cricket-kit-men-size-500x500.png" alt="Cricket"></td>
-                <td> 350$ per month </td>
-            </tr>
-            <tr>
-                <td> 5 </td>
-                <td> <div class="hockeypop" onclick="myFunction5()"> Hockey
-                        <span class="popuptext5" id="myPopup5"> The rental set consists of two high quality hockey sticks, 2 pairs of shoes, 2 pairs of shin guards and a hockey ball <br> <br><a href=""> Rent now </a> </span>
-                     </div>
-                </td>
-                <td> 40</td>
-                <td> <img src="https://m.media-amazon.com/images/I/71D5x6se7QL._AC_SL1500_.jpg" alt="Hockey"></td>
-                <td> 300$ per month </td>
-            </tr>
-            <tr>
-                <td> 6 </td>
-                <td> <div class="badmintonpop" onclick="myFunction6()"> Badminton
-                        <span class="popuptext6" id="myPopup6"> The rental set consists of a kitbag, 2 badminton racquets, 2 grips and a box shuttlecocks <br> <br><a href=""> Rent now </a> </span>
-                     </div>
-                   </td>
-                <td> 50 </td>
-                <td> <img src="https://m.media-amazon.com/images/I/81-4rp3jnxL._SL1500_.jpg" alt="Badminton"></td>
-                <td> 150$ per month </td>
-            </tr>
-            <tr>
-                <td> 7 </td>
-                <td> <div class="golfpop" onclick="myFunction7()"> Golf
-                        <span class="popuptext7" id="myPopup7"> The rental set consists of four different golfing clubs, a putting club and 5 golf balls <br> <br><a href=""> Rent now </a> </span>
-                     </div>
-                   </td>
-                <td> 10 </td>
-                <td> <img src="https://i.insider.com/5f21b84524381734ea40df21?width=1136&format=jpeg" alt="golf"></td>
-                <td> 700$ per month </td>
-            </tr> -->
-        </table>
+        </table> -->
 
 
 
-        <script src="/js/Escript.js"></script>
+        <!-- <script src="/js/Escript.js"></script> -->
 
     </body>
 

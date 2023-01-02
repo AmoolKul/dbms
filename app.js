@@ -256,10 +256,6 @@ app.get("/return", (req, res) => {
 
                 if (usereq != null) {
 
-
-
-
-
                     console.log(usereq)
                     let { userid, equipmentId, equipmentName, number_of_eq, price, date_of_return, date_of_issue } = usereq.dataValues
 

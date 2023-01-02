@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Acme', sans-serif;
+}
+body {
+    height: 200vh;
+    background: linear-gradient(to right, #B82E1F, #000000);
+}
+
+.topnav {
+    display: flex;
+    justify-content: flex-end;
+    background: black;
+    padding: 20px;
+}
+.topnav a {
+    margin: 0px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease-in;
+}
+.topnav a:hover {
+    transform: scale(1.1);
+}
+
+.wrapper {
+    padding: 20px;
+    margin: auto;
+    border: 5px solid white;
+    border-radius: 25px;
+    margin-top: 20px;
+    width: 40vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.wrapper img {
+    height: 200px;
+    border-radius: 30px;
+    width: 200px;
+}
+
+.wrapper li {
+    list-style-type: none;
+}
+
+.details {
+    min-width: 275px;
+    margin-left: 50px;
+    color: white;
+    padding: 20px;
+}
+
+.buy {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 3px solid white;
+    padding: 6px;
+    background: white;
+    color: black;
+    width: 100px;
+    cursor: pointer;
+}
+
+.buy:hover {
+    border: 3px solid white;
+    background: transparent;
+    color: white;
+}
+
+a:hover{
+    background-color: grey;
+}
+
+.something{
+    width: 100%;
+    position: relative;
+}
+
+.hover{
+    visibility: hidden; 
+    position: absolute;
+    background-color: #000000;
+    border-radius: 20px;
+    color: white;
+    padding: 20px;
+    right: 75%;
+    top: 40%;
+
+}
+
+
+
+
+.wrapper:hover .hover{
+    visibility: visible;
+}
+

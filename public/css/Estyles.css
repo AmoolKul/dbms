@@ -17,19 +17,18 @@ body{
 table{
     width: 1300px;
     text-align: center;
-    border: 3px solid grey;
     border-collapse: collapse ;
     border-spacing: 10px;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    background-color: #7D0552;
+    background-color: black;
     color: white;
     font-family: 'Acme', sans-serif;
+    border-radius: 20px;
 }
 table, th{
     padding: 20px;
-
 }
 table, td{
     padding: 80px;
